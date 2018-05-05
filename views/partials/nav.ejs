@@ -1,0 +1,94 @@
+<!-- nav  -->
+<!-- views/partials/nav.ejs -->
+<!-- <div id="brick" class=""></div> -->
+<!-- <div id="brick" class=""></div> -->
+<nav id="nav" class="navbar navbar-expand navbar-dark">
+ <div class="container">
+  <a href="/"><div class="navbar-brand">MaiMai</div></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#myNavbar" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="myNavbar">
+   <ul class="navbar-nav mr-auto myNavbar">
+     <div class="mangasearch float_right">
+         <div class="form-inline" action="" id="search">
+           <% var select %>
+           <input id="mangasearchform" class="searchform cvMinLength form-control mr-sm-2  search_select" placeholder="만화 제목 검색"
+           type="search" name="searchText" value="<%= select?search.searchText:"" %>">
+           <button class="btn btn-primary btn-sm my-2 my-sm-0" id="search_button" onclick="fnMove()" type="">검색</button>
+         </div>
+       <div class="message" id="searchError"></div>
+     </div>
+    <% if(isAuthenticated){ %>
+    <!-- <li class="nav-item dropdown dropdown_Post_nav">
+      <a class="nav-link dropdown-toggle" href="/posts" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        게시판
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item" href="/posts?group=">전체글보기</a>
+        <a class="dropdown-item" href="/posts?group=1">공지사항</a>
+        <a class="dropdown-item" href="/posts?group=2">커뮤니티</a>
+        <a class="dropdown-item" href="/posts?group=3">질문과 답변</a>
+      </div>
+    </li> -->
+  <% } %>
+   </ul>
+   <ul class="navbar-nav navbar-right myNavbar2">
+      <% if(isAuthenticated){ %>
+    <li class="nav-item navbar_login"><a class="nav-link" href="/users">회원목록</a></li>
+    <li class="nav-item navbar_login"><a class="nav-link" href="/users/<%= currentUser.username %>">내 정보</a></li>
+    <li class="nav-item navbar_login"><a class="nav-link" href="/logout">로그아웃</a></li>
+    <li class="nav-item navbar_login"><a class="nav-link" href="/users/new">회원가입</a></li>
+      <% } else { %>
+    <li class="nav-item navbar_login"><a class="nav-link" href="/login">로그인</a></li>
+      <% } %>
+   </ul>
+  </div>
+      <!-- adval -->
+      <!-- <script type="text/javascript">
+        var wid = '417997';
+        var uid = '196260';
+      </script>
+      <script type="text/javascript" src="//cdn.popcash.net/pop.js"></script> -->
+
+    </div>
+</nav>
+
+<div class="categorynav">
+  <ul class="nav container row mx-auto category_Container">
+    <li class="nav-item col-3">
+      <a class="nav-link nav-item_category" href="/toon/update">업데이트</a>
+    </li>
+    <li class="nav-item col-3">
+      <a class="nav-link nav-item_category" href="/toon/keepmanga">연재만화</a>
+    </li>
+    <li class="nav-item col-3">
+      <a class="nav-link nav-item_category" href="/toon/finish_manga">완결만화</a>
+    </li>
+    <li class="nav-item dropdown dropdown_Post_nav col-3" style="padding-right: 0px;">
+      <a class="nav-link nav-item_category dropdown-toggle" href="/posts" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        게시판
+      </a>
+      <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+        <a class="dropdown-item" href="/posts?group=">전체글보기</a>
+        <a class="dropdown-item" href="/posts?group=1">공지사항</a>
+        <a class="dropdown-item" href="/posts?group=2">커뮤니티</a>
+        <a class="dropdown-item" href="/posts?group=3">질문과 답변</a>
+        <% if(isAuthenticated){ %>
+        <a class="dropdown-item" href="/users">회원목록</a>
+        <a class="dropdown-item" href="/users/<%= currentUser.username %>">내 정보</a>
+        <a class="dropdown-item" href="/logout">로그아웃</a>
+        <a class="dropdown-item" href="/users/new">회원가입</a>
+          <% } else { %>
+        <a class="dropdown-item" href="/login">로그인</a>
+        <% } %>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<div class="">
+  <div id="search_box" class="container mx-auto row">
+      <!-- ajax -->
+  </div>
+</div>

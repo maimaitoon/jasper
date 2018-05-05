@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <% include ../partials/head  %>
+</head>
+<body  class="body" onload ="main_ajax_nowload()">
+  <% include ../partials/nav %>
+
+  <div class="container best_title">
+    인기만화 Best.
+  </div>
+  <div class="container bestdiv">
+    <table class="best_table">
+    <tr>
+    <td><a href="/toon/원펀맨"><img src="/img/onepunchman.png">원펀맨 <br><span style="color:#999;">(리메이크)</span></a></td>
+    <td><a href="/toon/원피스"><img src="/img/lupy.png">원피스</a></td>
+    <td><a href="/toon/헌터X헌터"><img src="/img/gon.jpg">헌터x헌터</a></td>
+    <td><a href="/toon/진격의 거인"><img src="/img/giant.jpg">진격의 거인</a></td>
+    <td><a href="/toon/블랙 클로버"><img src="/img/black.png">블랙 클로버</a></td>
+    <td><a href="/toon/나의 히어로 아카데미아"><img src="/img/myhero.png">나의 히어로 아카데미아</a></td>
+    <td><a href="/toon/일곱개의 대죄"><img src="/img/seven.jpg">일곱개의 대죄</a></td>
+    <td><a href="/toon/도쿄구울"><img src="/img/zombie.jpg">도쿄구울:re</a></td>
+    </tr>
+    <tr>
+      <td><a href="/toon/장난을 잘치는 타카기양"><img src="/img/takagi.jpg">장난을 잘치는 타카기양</a></td>
+    <td><a href="/toon/피안도"><img src="/img/piando.jpg">피안도48일후</a></td>
+    <td><a href="/toon/아인"><img src="/img/ain.png">아인</a></td>
+    <td><a href="/toon/킹덤"><img src="/img/kingdom.png">킹덤</a></td>
+    <td><a href="/toon/약속의 네버랜드"><img src="/img/promise.png">약속의 네버랜드</a></td>
+    <td><a href="/toon/나는 마리 안에"><img src="/img/mari.png">나는마리안에</a></td>
+    <td><a href="/toon/고블린 슬레이어"><img src="/img/gobline.png">고블린 슬레이어</a></td>
+    <td><a href="/toon/신체 찾기"><img src="/img/find.png">신체찾기</a></td>
+    </tr>
+    </table>
+  </div>
+
+<div>
+<!-- -->
+<div class="content container mx-auto row barbody">
+    <div class="col-sm-12 barboder">
+      <div class="" id="showmenu">연재중 만화 펼치기 <span class="oi oi-chevron-top"></span></div>
+        <div class="progress_menu" style="display: none;">
+          <div class="user user-index">
+            <ul class="floats" id="floats1">
+              <!-- ajax -->
+            </ul>
+          </div>
+      </div>
+    </div>
+
+  <div class="col-sm-12 barboder">
+      <div class="" id="showmenu2">완결 만화 펼치기 <span class="oi oi-chevron-top"></span></div>
+      <div class="progress_menu2" style="display: none;">
+        <div class="user user-index">
+          <ul class="floats" id="floats2">
+            <!-- ajax -->
+          </ul>
+        </div>
+    </div>
+  </div>
+</div>
+
+  <div class="upmain_body container mx-auto row">
+    <div class="row container upmangabody">
+      <div class="col-sm-12 newupdate">
+        <sup><span class="badge-pill badge-danger">new</span></sup><suv class="suv"><a href="/toon/update">최근 업데이트(더보기)</a></suv>
+      </div>
+      <% if(uplists.length == 0){ %>
+        <h5>최근 1주간 업데이트된 만화가 없습니다.</h5>
+      <% } else { %>
+           <% uplists.forEach(function(list) { %>
+              <div class="col-sm-2 upmanlayout">
+                <div class="manhwalist_each">
+                  <a class="manhwalist_name" href="/toon/<%=list.listname %>/<%= list.index %>">
+                    <img src="<%=list.content[0] %>" alt="" class="manhwalist_logo">
+                      <%=list.m_updDated %>
+                      <%=list.name %>
+                  </a>
+                </div>
+              </div>
+          <% }) %>
+      <%  } %>
+    </div>
+  </div>
+
+  <div id="main_div" class="container row mx-auto home home-welcome row">
+    <% if(errors.login){ %>
+     <script type="text/javascript">
+       alert("권한이 없습니다.")
+     </script>
+    <% } %>
+  </div>
+<!--  -->
+
+<!--  -->
+<hr>
+    <div class="container mx-auto row mangabodymainbody">
+      <div class="welcome_post container row">
+         <!--  -->
+         <div id="main_post_title" class="col-sm-4">
+             <div class="row">
+               <h3 class="col-9">
+                 <a href="/posts" id="more_color" >공지사항</a>
+               </h3>
+               <h4 class="col-3">
+                 <a href="/posts?group=1" id="more_color">
+                   <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>more
+                 </a>
+               </h4>
+             </div>
+           <table class="table table-hover table-sm posts">
+             <thead>
+             </thead>
+               <tbody>
+                 <% if(posts == null || posts.length == 0){ %>
+                   <tr>
+                     <td class="noData" colspan=100> 글이 없습니다. </td>
+                   </tr>
+                   <% } %>
+                   <% Notice.forEach(function(post) { %>
+                     <tr>
+                       <td class="title">
+                         <a  class="title" href="/posts/<%= post._id %>?<%= urlQuery %>"><div class="ellipsis"><%= post.title %>&nbsp;</div><span class="comments"></a>
+                         <a  class="comments" href="/posts/<%= post._id %>?<%= urlQuery %>">(<%= post.comment.length %>)</a></span>
+                       </td>
+                       <td class="adate">
+                           <%= post.createdDate %>
+                       </td>
+                     </tr>
+                       <% }) %>
+                 </tbody>
+              </table>
+            </div>
+         <!--  -->
+       </div>
+
+      <div class="row container mangabody">
+        <button type="button"name="" class="col-6 ongoingmanga1" id="manga_ing_finish1" disabled >연재만화 √</button>
+        <button type="button"name="" class="col-6 ongoingmanga2" id="manga_ing_finish2" >완결만화(클릭!)</button>
+       <div class="row container mangabody" id="manga_finish_ing">
+         <!-- ajax -->
+       </div>
+      </div>
+
+     </div>
+   </div>
+   <footer>
+     <% include ../partials/footer %>
+   </footer>
+  </body>
+</html>
