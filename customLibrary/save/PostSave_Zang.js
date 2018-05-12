@@ -18,7 +18,7 @@ module.exports = function(manhwaListUrl,listname){
             newManhwa.listname = listname;
             newManhwa.category = 'zang'; //여기저장할떄 잘봐
             // newManhwa.updated = Date.now() - 8; 이거 잘몰겟다..
-            newManhwa.index = 10+index; //이걸로순서를조정?
+            newManhwa.index = index; //이걸로순서를조정?
             newManhwa.url = url;
             // newManhwa.newManga = 'true'; //신작넣을때여기 트루
             newManhwa.save();

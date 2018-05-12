@@ -60,6 +60,26 @@
   </div>
 </div>
 
+<% if(newManhwa.length > 0 ){ %>
+  <div class="upmain_body container mx-auto row">
+    <div class="row container upmangabody">
+      <div class="col-sm-12 newupdate">
+        <sup><span class="badge-pill badge-success">new!</span></sup><suv class="suv"><a href="/toon/update">신작!</a></suv>
+      </div>
+   <% newManhwa.forEach(function(newMang){ %>
+     <div class="col-sm-2 upmanlayout">
+       <div class="manhwalist_each">
+        <a class="manhwalist_name" href="/toon/<%= newMang.name %>">
+          <img src='<%= newMang.photo %>' alt="" class="manhwalist_logo">
+         <%= newMang.name %>
+        </a>
+      </div>
+    </div>
+   <% }) %>
+  </div>
+ </div>
+<% } %>
+
   <div class="upmain_body container mx-auto row">
     <div class="row container upmangabody">
       <div class="col-sm-12 newupdate">

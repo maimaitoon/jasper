@@ -23,7 +23,7 @@ router.get('/',function(req,res,next){
   async.waterfall([function(callback){
 
     Manhwa
-      .find({updated: {$gte:now_time} , category : 'zang' }) //7일 이내 다출력 ㅇㅋ ? category : 'zang' 원래..
+      .find({updated: {$gte:now_time} , category : 'zang', newManga:{$ne:"true"} }) //7일 이내 다출력 ㅇㅋ ? category : 'zang' 원래..
       .sort({updated : -1})
       .exec(function(err,uplists){
           uplists = uplists.slice(0,20); //50개만추려서 보여주자
@@ -57,7 +57,13 @@ router.get('/',function(req,res,next){
       callback(null, Notice, Community, QnA, skip, maxPage, lists , uplists);
     });
   },function(Notice, Community, QnA, skip, maxPage, lists, uplists, callback){
-    Post.find(search.findPost)
+      ManhwaList.find( { newManga : "true" } ,function(err, newManhwa){
+        if(err) callback(err);
+        callback(null, Notice, Community, QnA, skip, maxPage, lists , uplists, newManhwa);
+      });
+
+  },function(Notice, Community, QnA, skip, maxPage, lists, uplists, newManhwa,callback){
+     Post.find(search.findPost)
     .populate(['author','comment']) //Model.populate()함수는 relationship이 형성되어 있는 항목의 값을 생성해 줍니다
     .sort("-createdAt")
     .skip(skip)
@@ -75,7 +81,8 @@ router.get('/',function(req,res,next){
           maxPage:maxPage,
           page:page,
           lists : lists,
-          uplists : uplists
+          uplists : uplists,
+          newManhwa: newManhwa
          });
     });
   }],function(err){
