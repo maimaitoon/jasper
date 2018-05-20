@@ -153,7 +153,7 @@ function countVisitors(req,res,next){
 //업데이트할떄 쓰는거 PostSave_upzang여기서 밑에것만 조금씩수정해주면됨 여기있는거 ㅇㅋ ? 업데이트할거만
 //인덱스가 반대로되있는거는 오류뜬다.. 해결법찾는게좋을듯..아진짜 머리아프네 ..
 //*은혼은 없데이트할때마다 1000 2000 3000 지금 2천까지나옴 다음3천 이렇게 천단위로 넣어라 인덱스
-// ManhwaList.find({name:"5등분의 신부"},function(err,manhwaList){
+// ManhwaList.find({name:"닥터 스톤(Dr. Stone)"},function(err,manhwaList){
 //                  console.log(manhwaList);
 //                  require('./customLibrary/save/PostSave_upzang')(manhwaList[0].url, manhwaList[0].name);
 //                                       //1.PostSave_Zang 단계확인후 2단계넘어가 (인덱스알지) ,  2.PostSave_upzang

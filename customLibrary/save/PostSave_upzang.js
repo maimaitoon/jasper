@@ -31,13 +31,13 @@ module.exports = function(manhwaListUrl,listname){
       }
       // 여기는 이제 장시시가 원피스같은거 목록에안올렷을때 여기직접하면됨 ㅇㅋ ? 원펀맨 헌터이런거 목록잘안하드라 ..
                       // 여기 바꾸고                                //여기
-      urlToJsonPost('http://zangsisi.net/?p=496713', ListsIndex, '골든 카무이 158화', function(imgArray,index, name, url){
+      urlToJsonPost('http://zangsisi.net/?p=498052', ListsIndex, '닥터 스톤 58화', function(imgArray,index, name, url){
         var newManhwa = new Manhwa();
         newManhwa.name = name;
         newManhwa.content = imgArray;
-        newManhwa.listname = '골든 카무이'; //여기맞추고  하면됨ㅇㅋ ?
+        newManhwa.listname = '닥터 스톤(Dr. Stone)'; //여기맞추고  하면됨ㅇㅋ ?
         newManhwa.category = 'zang';
-        newManhwa.index = 40; // 여기지정해주고! 그리고 인덱스 나오는거 +1해서  다음거까지하면될듯?
+        newManhwa.index = 17; // 여기지정해주고! 그리고 인덱스 나오는거 +1해서  다음거까지하면될듯?
         newManhwa.url = url;      //*은혼은 없데이트할때마다 1000 2000 3000 이렇게 천단위로 넣어라 인덱스
         newManhwa.save();
         console.log('save post ' + name);
